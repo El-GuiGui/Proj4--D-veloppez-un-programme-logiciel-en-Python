@@ -54,6 +54,19 @@ class Player_Controller:
         else:
             print("Aucun joueur trouvé avec cet identifiant d'échecs.")
 
+    def delete_player(self):
+        chess_id = input("Entrez l'identifiant d'échecs du joueur à supprimer : ")
+        player_to_delete = next(
+            (player for player in self.players if player.chess_id == chess_id), None
+        )
+        if player_to_delete:
+            self.players.remove(player_to_delete)
+            print(
+                f"Le joueur {player_to_delete.first_name} {player_to_delete.last_name} a été supprimé."
+            )
+        else:
+            print("Aucun joueur trouvé avec cet identifiant d'échecs.")
+
     def show_all_players(self):
         print(f"Nombre de joueurs enregistrés : {len(self.players)}")
         if not self.players:
@@ -61,10 +74,14 @@ class Player_Controller:
         else:
             self.view.show_players_list(self.players)
 
+    def show_players_by_score(self):
+        if not self.players:
+            print("Il n'y a pas de joueurs à afficher.")
+        else:
+            self.view.show_players_by_score(self.players)
 
-"""
-    def update_player(self, player):
-        # maj joueur
-        updated_player = self.view.update_player_details(player)
-"""
-# delete player, show  player by score,
+    def show_players_alphabetically(self):
+        if not self.players:
+            print("Il n'y a pas de joueurs à afficher.")
+        else:
+            self.view.show_players_alphabetically(self.players)

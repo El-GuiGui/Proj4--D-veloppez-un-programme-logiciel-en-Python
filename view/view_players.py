@@ -37,11 +37,15 @@ class Player_View:
         """
         Affiche les détails d'un joueur
         """
+        print("\n------------------- Détails du Joueur -------------------")
         print(f"Nom : {player.last_name}, Prénom : {player.first_name}")
         print(f"Date de naissance : {player.birth_date}")
         print(f"Identifiant d'échecs : {player.chess_id}")
-        print(f"Classement : {player.rank}")
+        print(
+            f"Classement : {player.rank if player.rank is not None else 'Non classé'}"
+        )
         print(f"Score : {player.score}")
+        print("--------------------------------------------------------")
 
     def show_players_list(self, players):  # view -> controller player show
         """
@@ -63,6 +67,3 @@ class Player_View:
         """
         sorted_players = sorted(players, key=lambda x: x.last_name)
         self.show_players_list(sorted_players)
-
-
-# a completer
