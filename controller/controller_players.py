@@ -1,6 +1,6 @@
 from model.model_players import players
 
-# from view.view_players import Player_View
+from view.view_players import Player_View
 from view.view_mainmenu import player_main_menu_view
 
 
@@ -8,6 +8,7 @@ class Player_Controller:
     def __init__(self):
         self.players = []
         self.player_menu_view = player_main_menu_view()
+        self.view = Player_View()
 
     def viewchoice(self):
         while True:
@@ -39,12 +40,31 @@ class Player_Controller:
         self.players.append(new_player)
         print("Ajout d'un nouveau joueur réussi !")
 
+    def update_player(self):
+        chess_id = input("Entrez l'identifiant d'échecs du joueur à mettre à jour: ")
+        # Trouver le joueur avec son identifiant national d'échecs
+        player_to_update = next(
+            (player for player in self.players if player.chess_id == chess_id), None
+        )
+        if player_to_update:
+            self.view.update_player_details(player_to_update)
+            print(
+                f"Les détails du joueur {player_to_update.first_name} ont été mis à jour."
+            )
+        else:
+            print("Aucun joueur trouvé avec cet identifiant d'échecs.")
+
+    def show_all_players(self):
+        print(f"Nombre de joueurs enregistrés : {len(self.players)}")
+        if not self.players:
+            print("Il n'y a pas de joueurs à afficher.")
+        else:
+            self.view.show_players_list(self.players)
+
+
+"""
     def update_player(self, player):
         # maj joueur
         updated_player = self.view.update_player_details(player)
-
-    def show_all_players(self):
-        self.view.show_players_list(self.players)
-
-
+"""
 # delete player, show  player by score,
