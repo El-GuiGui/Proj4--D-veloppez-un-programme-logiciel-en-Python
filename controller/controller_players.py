@@ -27,9 +27,10 @@ class Player_Controller:
                 self.show_players_alphabetically()
             elif choix == "7":
                 print("Retour au menu principal.")
+                break
             elif choix == "8":
                 print("Fermeture du programme.")
-                break
+                exit()
             else:
                 print("Choix non valide, réessayer !")
         pass
