@@ -4,9 +4,9 @@ class matchs:
         # Initialiser scores à 0
         self.scores = [0, 0]
 
-    def set_result(self, result):
-        # result (score1, score2)
-        self.scores = result
+    def set_winner(self, winner):
+        self.winner = winner
+        self.loser = self.player1 if winner == self.player2 else self.player2
 
     def get_winner(self):
         if self.scores[0] > self.scores[1]:

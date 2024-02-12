@@ -38,8 +38,29 @@ class player_main_menu_view:
         return choix
 
 
-# gestion tournois !
+class tournament_main_menu_view:
+    def show_menu(self):
+        """
+        Affiche le menu de la gestion des tournois
+        """
+        print("\nMenu de la Gestion des Tournois")
+        print("1. Créer un nouveau tournoi")
+        print("2. Afficher les détails d'un tournoi")
+        print("3. Lister tous les tournois")
+        print("4. Reprendre un tournoi")
+        print("5. Retourner au menu principal")
+        choix = input("Entrez le numéro de votre choix : ")
+        return choix
 
-# autre
-
-# a completer
+    def show_manage_tournament_menu(self):
+        """
+        Affiche le menu de la gestion d'un tournoi
+        """
+        print("\n--- Gestion du Tournoi ---")
+        print("1. Inscrire des joueurs")
+        print("2. Démarrer le prochain round")
+        print("3. Afficher les résultats actuels")
+        print("4. Générer les paires de joueurs")
+        print("5. Retourner au menu des tournois")
+        choix = input("Entrez le numéro de votre choix : ")
+        return choix

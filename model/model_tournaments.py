@@ -16,7 +16,7 @@ class tournaments:
         self.location = location
         self.start_date = start_date
         self.end_date = end_date
-        self.number_of_rounds = 4
+        self.number_of_rounds = rounds
         self.current_round_number = 0
         self.rounds = []
         self.players = players if players is not None else []
@@ -28,8 +28,7 @@ class tournaments:
 
     def start_new_round(self):
         if self.current_round_number < self.number_of_rounds:
-            new_round = rounds("Round " + str(self.current_round_number + 1))
-            new_round = rounds
+            new_round = Round("Round " + str(self.current_round_number + 1))
             self.rounds.append(new_round)
             self.current_round_number += 1
             new_round.start()
@@ -38,7 +37,7 @@ class tournaments:
             raise ValueError("Nombre maximum de tours atteint.")
 
 
-class rounds:
+class Round:
     def __init__(self, name):
         self.name = name
         self.start_time = None
