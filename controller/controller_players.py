@@ -10,6 +10,10 @@ class Player_Controller:
         self.player_menu_view = player_main_menu_view()
         self.view = Player_View()
 
+    # retourner la liste des joueurs
+    def get_players(self):
+        return self.players
+
     def viewchoice(self):
         while True:
             choix = self.player_menu_view.show_menu()

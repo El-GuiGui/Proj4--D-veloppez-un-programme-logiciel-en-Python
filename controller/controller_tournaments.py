@@ -1,12 +1,22 @@
-# from model.model_tournaments import tournaments
-
+import random
+from model.model_tournaments import Tournament, Round, Match
 from view.view_mainmenu import tournament_main_menu_view
+from view.view_tournaments import tournaments_view
+
+
+# ajouter fonction quitter dans tous les sous-menus .....
+# ajouter fonction de désinscrire un joueurs a tout moment d'un tournois
+# rgler round et match
+# regler show result (aussi dans model tournament)
+# reprendre tournois a modifier
 
 
 class Tournament_Controller:
-    def __init__(self):
+    def __init__(self, player_controller):
         self.tournaments = []
+        self.player_controller = player_controller
         self.view = tournament_main_menu_view()
+        self.details_view = tournaments_view()
 
     def viewchoice(self):
         while True:
@@ -40,6 +50,17 @@ class Tournament_Controller:
             else:
                 print("Choix non valide, réessayer !")
 
+    """
+    Option premier menu
+    """
+
+    def create_tournament(self):
+        details = self.details_view.get_tournament_details()
+        new_tournament = Tournament(*details)
+        self.tournaments.append(new_tournament)
+        print("Tournoi créé avec succès. Passons a la gestion du tournois.")
+        self.manage_tournament(new_tournament)
+
     def show_tournament_details(self):
         tournament_name = input("Entrez le nom du tournoi : ")
         found = False
@@ -60,9 +81,52 @@ class Tournament_Controller:
                     f"Nom : {tournament.name}, Lieu : {tournament.location}, Dates : {tournament.start_date} à {tournament.end_date}"
                 )
 
-    def create_tournament(self):
-        details = self.view.show_manage_tournament_menu()
-        new_tournament = Tournament(*details)
-        self.tournaments.append(new_tournament)
-        print("Tournoi créé avec succès. Passons à la gestion du tournoi.")
-        self.manage_tournament(new_tournament)
+    """
+    Option deuxième menu
+    """
+
+    def register_players(self, tournament):
+        print("Inscription des joueurs au tournoi.")
+        players = self.player_controller.get_players()
+        for player in players:
+            print(f"{player.chess_id}: {player.first_name} {player.last_name}")
+        while True:
+            player_id = input(
+                "Entrez l'identifiant d'échecs du joueur à inscrire (ou 'fin' pour terminer) : "
+            )
+            if player_id.lower() == "fin":
+                break
+            # Trouver et inscrire le joueur par son ID
+            player = next((p for p in players if p.chess_id == player_id), None)
+            if player:
+                tournament.add_player(player)
+                print(f"Joueur {player.first_name} {player.last_name} inscrit.")
+            else:
+                print("Joueur non trouvé.")
+
+    def start_next_round(self, tournament):
+        try:
+            new_round = tournament.start_new_round()
+            print(f"{new_round.name} a commencé.")
+        except ValueError as e:
+            print(e)
+
+    def show_current_results(self, tournament):
+        print("Résultats actuels du tournoi :")
+        # a modifier
+
+        tournament.show_results()
+
+    def generate_player_pairs(self, tournament):
+        """###
+        random generate, a modifier en random mais selon le score, les joueurs ne doivent pas se rencontrer plusieurs fois si possible aussi
+        """  ###
+
+        if len(tournament.players) % 2 != 0:
+            print("Nombre impair de joueurs, impossible de générer des paires.")
+            return
+        random.shuffle(tournament.players)
+        for i in range(0, len(tournament.players), 2):
+            print(
+                f"Paire: {tournament.players[i].first_name} {tournament.players[i].last_name} vs {tournament.players[i+1].first_name} {tournament.players[i+1].last_name}"
+            )

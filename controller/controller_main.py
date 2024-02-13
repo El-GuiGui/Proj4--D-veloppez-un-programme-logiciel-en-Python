@@ -1,6 +1,4 @@
 from view.view_mainmenu import main_menu_view
-
-# from view.view_mainmenu import player_main_menu_view
 from controller.controller_players import Player_Controller
 from controller.controller_tournaments import Tournament_Controller
 
@@ -12,7 +10,7 @@ class Main_controller:
         # Création d'une instance de Player_Controller
         self.player_controller = Player_Controller()
         # Création d'une instance de Tournament_Controller
-        self.tournament_controller = Tournament_Controller()
+        self.tournament_controller = Tournament_Controller(self.player_controller)
 
     def run(self):
         while True:

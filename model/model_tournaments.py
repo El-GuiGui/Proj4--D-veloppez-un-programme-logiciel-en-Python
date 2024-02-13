@@ -1,54 +1,67 @@
 from datetime import datetime
 
 
-class tournaments:
-    def __init__(
-        self,
-        name,
-        location,
-        start_date,
-        end_date,
-        rounds=4,
-        players=None,
-        description="",
-    ):
+class Tournament:
+    def __init__(self, name, location, start_date, end_date, description=""):
         self.name = name
         self.location = location
-        self.start_date = start_date
-        self.end_date = end_date
-        self.number_of_rounds = rounds
-        self.current_round_number = 0
-        self.rounds = []
-        self.players = players if players is not None else []
+        self.start_date = datetime.strptime(start_date, "%d/%m/%Y")
+        self.end_date = datetime.strptime(end_date, "%d/%m/%Y")
         self.description = description
+        self.players = []
+        self.rounds = []
+        self.current_round = 0
 
     def add_player(self, player):
+        """
+        Ajoute un joueur au tournoi
+        """
         if player not in self.players:
             self.players.append(player)
 
     def start_new_round(self):
-        if self.current_round_number < self.number_of_rounds:
-            new_round = Round("Round " + str(self.current_round_number + 1))
+        """
+        Démarre un nouveau round (si le nombre actuel de rounds est inférieur à 4).
+        """
+        if len(self.rounds) < 4:
+            round_name = f"Round {len(self.rounds) + 1}"
+            new_round = Round(round_name)
             self.rounds.append(new_round)
-            self.current_round_number += 1
-            new_round.start()
             return new_round
         else:
-            raise ValueError("Nombre maximum de tours atteint.")
+            raise ValueError(
+                "Le nombre maximum de rounds pour ce tournoi a été atteint."
+            )
+
+    def show_results(self):
+        """a modifier"""
+        pass
 
 
 class Round:
     def __init__(self, name):
         self.name = name
-        self.start_time = None
+        self.start_time = datetime.now()
         self.end_time = None
         self.matches = []
 
-    def start(self):
-        self.start_time = datetime.now()
-
-    def end(self):
+    def end_round(self):
+        """
+        Marque la fin du round.
+        """
         self.end_time = datetime.now()
 
-    def add_match(self, match):
-        self.matches.append(match)
+
+class Match:
+    def __init__(self, player1, player2):
+        self.player1 = player1
+        self.player2 = player2
+        self.winner = None
+        self.loser = None
+
+    def set_winner(self, winner):
+        """
+        Définit le gagnant du match.
+        """
+        self.winner = winner
+        self.loser = self.player1 if winner == self.player2 else self.player2
