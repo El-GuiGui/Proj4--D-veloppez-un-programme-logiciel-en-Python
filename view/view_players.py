@@ -8,7 +8,17 @@ class Player_View:
         last_name = input("Nom de famille : ")
         birth_date = input("Date de naissance (JJ/MM/AAAA) : ")
         chess_id = input("Identifiant d'échecs : ")
-        return first_name, last_name, birth_date, chess_id
+        rank = None
+        score = 0
+
+        return {
+            "first_name": first_name,
+            "last_name": last_name,
+            "birth_date": birth_date,
+            "chess_id": chess_id,
+            "rank": rank,
+            "score": score,
+        }
 
     def update_player_details(self, player):
         """

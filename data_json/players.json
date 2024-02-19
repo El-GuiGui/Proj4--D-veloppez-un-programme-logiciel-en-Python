@@ -1,0 +1,28 @@
+{
+    "players": [
+        {
+            "chess_id": "e",
+            "first_name": "e",
+            "last_name": "e",
+            "birth_date": "e",
+            "rank": null,
+            "score": 0
+        },
+        {
+            "chess_id": "a",
+            "first_name": "a",
+            "last_name": "a",
+            "birth_date": "a",
+            "rank": null,
+            "score": 0
+        },
+        {
+            "chess_id": "w",
+            "first_name": "w",
+            "last_name": "w",
+            "birth_date": "w",
+            "rank": null,
+            "score": 0
+        }
+    ]
+}

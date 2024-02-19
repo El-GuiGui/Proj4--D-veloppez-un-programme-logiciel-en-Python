@@ -1,14 +1,35 @@
+import json
+import os
 from model.model_players import players
-
 from view.view_players import Player_View
 from view.view_mainmenu import player_main_menu_view
 
 
 class Player_Controller:
     def __init__(self):
-        self.players = []
+        self.players = self.load_players()
         self.player_menu_view = player_main_menu_view()
         self.view = Player_View()
+
+    def load_players(self, file_path="data_json/players.json"):
+        """
+        Charge les joueurs depuis le fichier JSON.
+
+        """
+        if not os.path.exists(file_path):
+            return []
+        with open(file_path, "r") as file:
+            data = json.load(file)
+            return [players(**player_dict) for player_dict in data.get("players", [])]
+
+    def save_players(self, file_path="data_json/players.json"):
+        """
+        Sauvegarde les joueurs dans le fichier JSON.
+
+        """
+        with open(file_path, "w") as file:
+            players_data = [player.players_serialize() for player in self.players]
+            json.dump({"players": players_data}, file, indent=4)
 
     # retourner la liste des joueurs
     def get_players(self):
@@ -41,23 +62,28 @@ class Player_Controller:
 
     def create_player(self):
         details = self.view.get_player_details()
-        new_player = players(*details)
+        new_player = players(**details)
         self.players.append(new_player)
+        self.save_players()
         print("Ajout d'un nouveau joueur réussi !")
 
     def update_player(self):
         chess_id = input("Entrez l'identifiant d'échecs du joueur à mettre à jour: ")
-        # Trouver le joueur avec son identifiant national d'échecs
-        player_to_update = next(
-            (player for player in self.players if player.chess_id == chess_id), None
-        )
-        if player_to_update:
-            self.view.update_player_details(player_to_update)
-            print(
-                f"Les détails du joueur {player_to_update.first_name} ont été mis à jour."
-            )
-        else:
-            print("Aucun joueur trouvé avec cet identifiant d'échecs.")
+        for player in self.players:
+            if player.chess_id == chess_id:
+                updated_info = self.view.get_player_details()
+                player.first_name = updated_info.get("first_name", player.first_name)
+                player.last_name = updated_info.get("last_name", player.last_name)
+                player.birth_date = updated_info.get("birth_date", player.birth_date)
+                player.chess_id = updated_info.get("chess_id", player.chess_id)
+                player.rank = updated_info.get("rank", player.rank)
+                player.score = updated_info.get("score", player.score)
+                self.save_players()
+                print(
+                    f"Les détails du joueur {player.first_name} {player.last_name} ont été mis à jour."
+                )
+                return
+        print("Aucun joueur trouvé avec cet identifiant d'échecs.")
 
     def delete_player(self):
         chess_id = input("Entrez l'identifiant d'échecs du joueur à supprimer : ")
@@ -71,6 +97,7 @@ class Player_Controller:
             )
         else:
             print("Aucun joueur trouvé avec cet identifiant d'échecs.")
+        self.save_players()
 
     def show_all_players(self):
         print(f"Nombre de joueurs enregistrés : {len(self.players)}")

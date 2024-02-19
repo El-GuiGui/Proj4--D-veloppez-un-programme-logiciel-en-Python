@@ -8,6 +8,19 @@ class players:
         self.rank = rank
         self.score = score
 
+    def players_serialize(self):
+        """
+        Convertit pour la sérialisation du JSON.
+        """
+        return {
+            "chess_id": self.chess_id,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "birth_date": self.birth_date,
+            "rank": self.rank,
+            "score": self.score,
+        }
+
 
 def update_score(self, points):
     # Met à jour le score suivant les points gagnés
@@ -22,6 +35,3 @@ def compare_score(self, other_player):
 def __str__(self):
     # Retourne les informations du joueur.
     return f"{self.first_name} {self.last_name} {self.birth_date} (ID: {self.chess_id}), Score: {self.score}, Rank: {self.rank}"
-
-
-# db ? link ?
