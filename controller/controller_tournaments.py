@@ -8,7 +8,7 @@ from view.view_tournaments import tournaments_view
 # ajouter fonction de désinscrire un joueurs a tout moment d'un tournois
 # rgler round et match
 # regler show result (aussi dans model tournament)
-# reprendre tournois a modifier
+# reprendre tournois a modifier et arreter tournois
 
 
 class Tournament_Controller:
@@ -118,15 +118,18 @@ class Tournament_Controller:
         tournament.show_results()
 
     def generate_player_pairs(self, tournament):
-        """###
-        random generate, a modifier en random mais selon le score, les joueurs ne doivent pas se rencontrer plusieurs fois si possible aussi
-        """  ###
-
         if len(tournament.players) % 2 != 0:
             print("Nombre impair de joueurs, impossible de générer des paires.")
             return
-        random.shuffle(tournament.players)
-        for i in range(0, len(tournament.players), 2):
+
+        # Trier les joueurs par score décroissant (ou croissant si souhaité)
+        sorted_players = sorted(
+            tournament.players, key=lambda player: player.score, reverse=True
+        )
+
+        # Générer des paires à partir de la liste triée
+        for i in range(0, len(sorted_players), 2):
             print(
-                f"Paire: {tournament.players[i].first_name} {tournament.players[i].last_name} vs {tournament.players[i+1].first_name} {tournament.players[i+1].last_name}"
+                f"Paire: {sorted_players[i].first_name} {sorted_players[i].last_name} (Score: {sorted_players[i].score}) "
+                f"vs {sorted_players[i+1].first_name} {sorted_players[i+1].last_name} (Score: {sorted_players[i+1].score})"
             )
