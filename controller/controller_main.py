@@ -13,6 +13,10 @@ class Main_controller:
         self.tournament_controller = Tournament_Controller(self.player_controller)
 
     def run(self):
+        """
+        Input pour le menu principal
+
+        """
         while True:
             choix = self.main_menu_view.show_menu()
             if choix == "1":

@@ -7,7 +7,14 @@ class tournaments_view:
         start_date = input("Date de début (JJ/MM/AAAA) : ")
         end_date = input("Date de fin (JJ/MM/AAAA) : ")
         description = input("Description (facultatif) : ")
-        return name, location, start_date, end_date, description
+        # Retourner les détails sous forme de dictionnaire
+        return {
+            "name": name,
+            "location": location,
+            "start_date": start_date,
+            "end_date": end_date,
+            "description": description,
+        }
 
     def show_tournament_details(self, tournament):
         """Affiche les détails d'un tournoi spécifique."""

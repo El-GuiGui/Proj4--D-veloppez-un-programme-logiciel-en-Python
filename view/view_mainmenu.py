@@ -1,15 +1,8 @@
-# from controller.controller_main import Main_controller
-# from controller.controller_players import Player_Controller
-# from controller.controller_tournaments import Tournament_Controller
-# from controller.controller_matchs import Match_Controller
-
-# from view.xxxxxxx import menu_view_imput   xxxxxxxxxxxxxxxx
-
-
 class main_menu_view:
     def show_menu(self):
         """
         Affiche le menu principal
+
         """
         print("\nMenu Principal")
         print("1. Gestion des joueurs")
@@ -23,6 +16,7 @@ class player_main_menu_view:
     def show_menu(self):
         """
         Affiche le menu de la gestion des joueurs
+
         """
         print("\nMenu de la Gestion des Joueurs")
         print("1. Ajouter un nouveau joueur")
@@ -42,6 +36,7 @@ class tournament_main_menu_view:
     def show_menu(self):
         """
         Affiche le menu de la gestion des tournois
+
         """
         print("\nMenu de la Gestion des Tournois")
         print("1. Créer un nouveau tournoi")
@@ -55,6 +50,7 @@ class tournament_main_menu_view:
     def show_manage_tournament_menu(self):
         """
         Affiche le menu de la gestion d'un tournoi
+
         """
         print("\n--- Gestion du Tournoi ---")
         print("1. Inscrire des joueurs")

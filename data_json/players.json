@@ -23,6 +23,14 @@
             "birth_date": "w",
             "rank": null,
             "score": 0
+        },
+        {
+            "chess_id": "z",
+            "first_name": "z",
+            "last_name": "z",
+            "birth_date": "z",
+            "rank": null,
+            "score": 0
         }
     ]
 }

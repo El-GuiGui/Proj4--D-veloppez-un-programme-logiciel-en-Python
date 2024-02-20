@@ -1,0 +1,48 @@
+{
+    "tournaments": [
+        {
+            "name": "1",
+            "location": "1",
+            "start_date": "11/11/1111",
+            "end_date": "11/11/1111",
+            "players": [
+                {
+                    "chess_id": "e",
+                    "first_name": "e",
+                    "last_name": "e",
+                    "birth_date": "e",
+                    "rank": null,
+                    "score": 0
+                },
+                {
+                    "chess_id": "a",
+                    "first_name": "a",
+                    "last_name": "a",
+                    "birth_date": "a",
+                    "rank": null,
+                    "score": 0
+                },
+                {
+                    "chess_id": "w",
+                    "first_name": "w",
+                    "last_name": "w",
+                    "birth_date": "w",
+                    "rank": null,
+                    "score": 0
+                },
+                {
+                    "chess_id": "z",
+                    "first_name": "z",
+                    "last_name": "z",
+                    "birth_date": "z",
+                    "rank": null,
+                    "score": 0
+                }
+            ],
+            "rounds": 4,
+            "current_round": 0,
+            "matches": [],
+            "description": "1"
+        }
+    ]
+}

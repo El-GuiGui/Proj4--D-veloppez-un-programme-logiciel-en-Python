@@ -2,15 +2,18 @@ from datetime import datetime
 
 
 class Tournament:
-    def __init__(self, name, location, start_date, end_date, description=""):
+    def __init__(
+        self, name, location, start_date, end_date, players=[], rounds=4, description=""
+    ):
         self.name = name
         self.location = location
-        self.start_date = datetime.strptime(start_date, "%d/%m/%Y")
-        self.end_date = datetime.strptime(end_date, "%d/%m/%Y")
-        self.description = description
-        self.players = []
-        self.rounds = []
+        self.start_date = start_date
+        self.end_date = end_date
+        self.players = players
+        self.rounds = rounds
         self.current_round = 0
+        self.matches = []
+        self.description = description
 
     def add_player(self, player):
         """
@@ -18,6 +21,19 @@ class Tournament:
         """
         if player not in self.players:
             self.players.append(player)
+
+    def tournament_serialize(self):
+        return {
+            "name": self.name,
+            "location": self.location,
+            "start_date": str(self.start_date),
+            "end_date": str(self.end_date),
+            "players": [player.players_serialize() for player in self.players],
+            "rounds": self.rounds,
+            "current_round": self.current_round,
+            "matches": self.matches,
+            "description": self.description,
+        }
 
     def start_new_round(self):
         """

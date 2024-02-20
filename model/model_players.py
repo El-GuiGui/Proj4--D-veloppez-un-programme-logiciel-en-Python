@@ -11,6 +11,7 @@ class players:
     def players_serialize(self):
         """
         Convertit pour la sérialisation du JSON.
+
         """
         return {
             "chess_id": self.chess_id,

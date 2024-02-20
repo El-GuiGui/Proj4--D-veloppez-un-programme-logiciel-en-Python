@@ -2,6 +2,7 @@ class Player_View:
     def get_player_details(self):
         """
         Informations nécessaires à la création d'un nouveau joueur
+
         """
         print("Entrer les détails du joueur :")
         first_name = input("Prénom : ")
@@ -23,6 +24,7 @@ class Player_View:
     def update_player_details(self, player):
         """
         Met à jour les détails d'un joueur existant
+
         """
         print(
             f"Mise à jour des informations pour {player.first_name} {player.last_name}:"
@@ -46,6 +48,7 @@ class Player_View:
     def show_player_details(self, player):
         """
         Affiche les détails d'un joueur
+
         """
         print("\n------------------- Détails du Joueur -------------------")
         print(f"Nom : {player.last_name}, Prénom : {player.first_name}")
@@ -60,6 +63,7 @@ class Player_View:
     def show_players_list(self, players):  # view -> controller player show
         """
         Affiche une liste de tous les joueurs.
+
         """
         for player in players:
             self.show_player_details(player)
@@ -67,6 +71,7 @@ class Player_View:
     def show_players_by_score(self, players):
         """
         Affiche les joueurs triés par score.
+
         """
         sorted_players = sorted(players, key=lambda x: x.score, reverse=True)
         self.show_players_list(sorted_players)
@@ -74,6 +79,7 @@ class Player_View:
     def show_players_alphabetically(self, players):
         """
         Affiche les joueurs triés par ordre alphabétique (nom)
+
         """
         sorted_players = sorted(players, key=lambda x: x.last_name)
         self.show_players_list(sorted_players)

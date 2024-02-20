@@ -1,4 +1,4 @@
-import random
+import json
 from model.model_tournaments import Tournament, Round, Match
 from view.view_mainmenu import tournament_main_menu_view
 from view.view_tournaments import tournaments_view
@@ -13,12 +13,31 @@ from view.view_tournaments import tournaments_view
 
 class Tournament_Controller:
     def __init__(self, player_controller):
-        self.tournaments = []
+        self.tournaments = self.load_tournaments()
         self.player_controller = player_controller
         self.view = tournament_main_menu_view()
         self.details_view = tournaments_view()
 
+    def load_tournaments(self):
+        try:
+            with open("data_json/tournaments.json", "r") as file:
+                tournaments_data = json.load(file)["tournaments"]
+                return [Tournament(**tournament) for tournament in tournaments_data]
+        except (FileNotFoundError, json.JSONDecodeError):
+            return []
+
+    def save_tournaments(self):
+        with open("data_json/tournaments.json", "w") as file:
+            tournaments_data = [
+                tournament.tournament_serialize() for tournament in self.tournaments
+            ]
+            json.dump({"tournaments": tournaments_data}, file, indent=4)
+
     def viewchoice(self):
+        """
+        Input pour le menu des tournois
+
+        """
         while True:
             choix = self.view.show_menu()
             if choix == "1":
@@ -35,6 +54,10 @@ class Tournament_Controller:
                 print("Choix non valide, réessayer !")
 
     def manage_tournament(self, tournament):
+        """
+        Input pour le menu de la gestion d'un tournois
+
+        """
         while True:
             choix = self.view.show_manage_tournament_menu()
             if choix == "1":
@@ -56,9 +79,10 @@ class Tournament_Controller:
 
     def create_tournament(self):
         details = self.details_view.get_tournament_details()
-        new_tournament = Tournament(*details)
+        new_tournament = Tournament(**details)
         self.tournaments.append(new_tournament)
-        print("Tournoi créé avec succès. Passons a la gestion du tournois.")
+        self.save_tournaments()
+        print("Tournoi créé avec succès. Passons a la gestion de ce tournois.")
         self.manage_tournament(new_tournament)
 
     def show_tournament_details(self):
@@ -103,6 +127,7 @@ class Tournament_Controller:
                 print(f"Joueur {player.first_name} {player.last_name} inscrit.")
             else:
                 print("Joueur non trouvé.")
+            self.save_tournaments()
 
     def start_next_round(self, tournament):
         try:

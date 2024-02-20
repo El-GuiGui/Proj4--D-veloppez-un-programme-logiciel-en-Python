@@ -36,6 +36,10 @@ class Player_Controller:
         return self.players
 
     def viewchoice(self):
+        """
+        Input pour le menu des joueurs
+
+        """
         while True:
             choix = self.player_menu_view.show_menu()
             if choix == "1":
