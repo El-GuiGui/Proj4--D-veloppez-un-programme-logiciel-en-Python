@@ -1,14 +1,13 @@
 import json
+from model.model_players import players
 from model.model_tournaments import Tournament, Round, Match
 from view.view_mainmenu import tournament_main_menu_view
 from view.view_tournaments import tournaments_view
-
+from controller.controller_matchs import MatchsController
 
 # ajouter fonction quitter dans tous les sous-menus .....
 # ajouter fonction de désinscrire un joueurs a tout moment d'un tournois
 # rgler round et match
-# regler show result (aussi dans model tournament)
-# reprendre tournois a modifier et arreter tournois
 
 
 class Tournament_Controller:
@@ -17,12 +16,21 @@ class Tournament_Controller:
         self.player_controller = player_controller
         self.view = tournament_main_menu_view()
         self.details_view = tournaments_view()
+        self.matches_controller = MatchsController(self)
 
     def load_tournaments(self):
         try:
             with open("data_json/tournaments.json", "r") as file:
                 tournaments_data = json.load(file)["tournaments"]
-                return [Tournament(**tournament) for tournament in tournaments_data]
+                loaded_tournaments = []
+                for tournament_data in tournaments_data:
+                    player_instances = [
+                        players.players_deserialize(player_data)
+                        for player_data in tournament_data["players"]
+                    ]
+                    tournament_data["players"] = player_instances
+                    loaded_tournaments.append(Tournament(**tournament_data))
+                return loaded_tournaments
         except (FileNotFoundError, json.JSONDecodeError):
             return []
 
@@ -47,7 +55,7 @@ class Tournament_Controller:
             elif choix == "3":
                 self.list_tournaments()
             elif choix == "4":
-                self.resume_tournaments
+                self.resume_tournaments()
             elif choix == "5":
                 break
             else:
@@ -63,7 +71,7 @@ class Tournament_Controller:
             if choix == "1":
                 self.register_players(tournament)
             elif choix == "2":
-                self.start_next_round(tournament)
+                self.start_round(tournament)
             elif choix == "3":
                 self.show_current_results(tournament)
             elif choix == "4":
@@ -105,6 +113,29 @@ class Tournament_Controller:
                     f"Nom : {tournament.name}, Lieu : {tournament.location}, Dates : {tournament.start_date} à {tournament.end_date}"
                 )
 
+    def resume_tournaments(self):
+        # Afficher tous les tournois disponibles.
+        if not self.tournaments:
+            print("Aucun tournoi disponible pour reprendre.")
+            return
+
+        print("Tournois disponibles pour reprendre :")
+        for index, tournament in enumerate(self.tournaments, start=1):
+            print(f"{index}. {tournament.name} - {tournament.location}")
+
+        # Choix du tournois à reprendre
+        choice = input("Entrez le numéro du tournoi à reprendre : ")
+        try:
+            selected_index = int(choice) - 1
+            if 0 <= selected_index < len(self.tournaments):
+                selected_tournament = self.tournaments[selected_index]
+                print(f"Reprise du tournoi: {selected_tournament.name}")
+                self.manage_tournament(selected_tournament)
+            else:
+                print("Sélection invalide.")
+        except ValueError:
+            print("Veuillez entrer un numéro valide.")
+
     """
     Option deuxième menu
     """
@@ -129,17 +160,35 @@ class Tournament_Controller:
                 print("Joueur non trouvé.")
             self.save_tournaments()
 
-    def start_next_round(self, tournament):
-        try:
-            new_round = tournament.start_new_round()
-            print(f"{new_round.name} a commencé.")
-        except ValueError as e:
-            print(e)
+    def start_round(self, tournament_name, round_name):
+        tournament = self.find_tournament_by_name(tournament_name)
+        if tournament:
+            try:
+                new_round = tournament.start_new_round(round_name)
+                print(f"Round {new_round.name} démarré.")
+                self.save_tournaments()  # Assurez-vous que cette méthode sauvegarde l'état actuel des tournois dans un fichier JSON
+            except ValueError as e:
+                print(e)
+        else:
+            print("Tournoi introuvable.")
+
+    def end_round(self, tournament_name, round_name):
+        tournament = self.find_tournament_by_name(tournament_name)
+        if tournament:
+            round_to_end = next(
+                (r for r in tournament.rounds if r.name == round_name), None
+            )
+            if round_to_end:
+                round_to_end.end_round()
+                print(f"Round {round_to_end.name} terminé.")
+                self.save_tournaments()
+            else:
+                print("Round introuvable.")
+        else:
+            print("Tournoi introuvable.")
 
     def show_current_results(self, tournament):
         print("Résultats actuels du tournoi :")
-        # a modifier
-
         tournament.show_results()
 
     def generate_player_pairs(self, tournament):

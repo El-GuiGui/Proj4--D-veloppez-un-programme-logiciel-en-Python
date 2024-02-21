@@ -22,6 +22,10 @@ class players:
             "score": self.score,
         }
 
+    @classmethod
+    def players_deserialize(cls, data):
+        return cls(**data)
+
 
 def update_score(self, points):
     # Met à jour le score suivant les points gagnés

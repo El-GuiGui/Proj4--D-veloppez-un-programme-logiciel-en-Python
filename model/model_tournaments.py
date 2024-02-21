@@ -3,7 +3,16 @@ from datetime import datetime
 
 class Tournament:
     def __init__(
-        self, name, location, start_date, end_date, players=[], rounds=4, description=""
+        self,
+        name,
+        location,
+        start_date,
+        end_date,
+        players=[],
+        rounds=4,
+        description="",
+        current_round=0,
+        matches=[],
     ):
         self.name = name
         self.location = location
@@ -11,8 +20,8 @@ class Tournament:
         self.end_date = end_date
         self.players = players
         self.rounds = rounds
-        self.current_round = 0
-        self.matches = []
+        self.current_round = current_round
+        self.matches = matches
         self.description = description
 
     def add_player(self, player):
@@ -35,23 +44,36 @@ class Tournament:
             "description": self.description,
         }
 
-    def start_new_round(self):
-        """
-        Démarre un nouveau round (si le nombre actuel de rounds est inférieur à 4).
-        """
-        if len(self.rounds) < 4:
-            round_name = f"Round {len(self.rounds) + 1}"
-            new_round = Round(round_name)
+    def start_new_round(self, name):
+        if self.current_round < self.rounds:
+            new_round = Round(name)
+            self.current_round += 1
             self.rounds.append(new_round)
             return new_round
         else:
-            raise ValueError(
-                "Le nombre maximum de rounds pour ce tournoi a été atteint."
-            )
+            raise ValueError("Nombre maximum de rounds atteint.")
 
     def show_results(self):
-        """a modifier"""
-        pass
+        # Vérifie si aucun round n'a été commencé
+        if self.current_round == 0:
+            print("Aucun round n'a été commencé. Veuillez commencer un round.")
+            return
+
+        print("\nClassement actuel des joueurs :")
+        # Trier les joueurs par score décroissant
+        sorted_players = sorted(self.players, key=lambda p: p["score"], reverse=True)
+        for player in sorted_players:
+            print(
+                f"{player['first_name']} {player['last_name']} : {player['score']} points"
+            )
+
+        print("\nMatchs joués :")
+        for round in self.rounds:
+            print(f"{round.name}:")
+            for match in round.matches:
+                print(
+                    f"  {match.player1['first_name']} vs {match.player2['first_name']} - Vainqueur : {'Match nul' if match.winner is None else match.winner['first_name']}"
+                )
 
 
 class Round:
