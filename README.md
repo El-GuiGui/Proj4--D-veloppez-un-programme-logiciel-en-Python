@@ -1,6 +1,6 @@
 # Instructions pour projet : Développez un programme logiciel en Python
 **Instruction** :
-Ce projet a pour but de développer une application hors ligne de gestion de tournois d'échecs en utilisant Python et le modèle MVC. En assurant que l'application permette de sauvegarder et revoir les résultats, de suivre les principes de la programmation orientée objet, en respectant la PEP 8 pour la propreté du code, et utilisez le format JSON pour les fichiers de données. 
+Ce projet a pour but de développer une application hors ligne de gestion de tournois d'échecs en utilisant Python et le modèle MVC. En assurant que l'application permette de sauvegarder et revoir les résultats, de suivre les principes de la programmation orientée objet, en respectant la PEP 8 pour la propreté du code, et en utilisant le format JSON pour les fichiers de données. 
 
 ## Configuration de l'Environnement
 
