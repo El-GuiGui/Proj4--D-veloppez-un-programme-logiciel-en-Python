@@ -1,0 +1,18 @@
+# Ignore directories
+__pycache__/
+autres/
+
+# Ignore all .py files
+*.py
+
+# not ignore main.py
+!main.py
+
+# not ignore specific files
+!controller/
+!model/
+!view/
+!data_json/
+!instruction_project.md
+!README.md
+!requirements.txt
