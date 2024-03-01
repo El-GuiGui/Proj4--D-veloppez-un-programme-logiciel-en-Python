@@ -1,16 +1,15 @@
 # Instructions pour projet : Développez un programme logiciel en Python
 **Instruction** :
-Ce projet est un script Python conçu pour extraire des données du site web "Books to Scrape". Il navigue à travers différentes catégories de livres, extrait les informations voulues pour chaque livre, et enregistre ces données dans des fichiers CSV.
+Ce projet a pour but de développer une application hors ligne de gestion de tournois d'échecs en utilisant Python et le modèle MVC. En assurant que l'application permette de sauvegarder et revoir les résultats, de suivre les principes de la programmation orientée objet, en respectant la PEP 8 pour la propreté du code, et utilisez le format JSON pour les fichiers de données. 
 
 ## Configuration de l'Environnement
 
-Pour exécuter le script, suivez les étapes ci-dessous pour configurer l'environnement.
+Pour exécuter le programme, suivez les étapes ci-dessous pour configurer l'environnement.
 
 ### Prérequis
 
 - Un éditeur : VisualStudio code, Spider, pycharm ...
-- Python 3.x
-- pip (LE gestionnaire de paquets pour Python)
+- Python 3.x<
 
 ### Création et Activation de l'Environnement Virtuel
 
@@ -38,21 +37,12 @@ Utilisez la commande appropriée selon votre système d'exploitation.
 ```
 
 
-3. **Installation des Dépendances** :
+3. **Lancement du Script** :
 
-Avec l'environnement virtuel activé, installez les dépendances requises :
-
-   ```bash
-   pip install -r requirements.txt
-```
-Assurez-vous que le fichier requirements.txt est présent dans le dossier du projet !
-
-4. **Lancement du Script** :
-
-Après l'installation des bibliothèques, lancez le script avec :
+lancez le script avec :
 
    ```bash
    python main.py
 ```
 
-Patienter le temps que la totalité des livres soit scraper, on voit ensuite un dossier "images" avec les images des couvertures, et un dossier "Books Categories" avec les fichiers CSV correspondant à chaque catégorie !
+Vous pouvez maintenant naviguer dans tous les menus et sous menus de l'application !
