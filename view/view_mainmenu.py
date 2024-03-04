@@ -7,7 +7,8 @@ class main_menu_view:
         print("\nMenu Principal")
         print("1. Gestion des joueurs")
         print("2. Gestion des tournois")
-        print("3. Quitter")
+        print("3. Gestion des rapports")
+        print("4. Quitter")
         choix = input("Entrez le numéro de votre choix : ")
         return choix
 
@@ -54,9 +55,25 @@ class tournament_main_menu_view:
         """
         print("\n--- Gestion du Tournoi ---")
         print("1. Inscrire des joueurs")
-        print("2. Démarrer le prochain round")
-        print("3. Afficher les résultats actuels")
-        print("4. Générer les paires de joueurs")
+        print("2. Démarrer un round")
+        print("3. Terminer le round actuel")
+        print("4. Afficher les résultats actuels")
         print("5. Retourner au menu des tournois")
+        choix = input("Entrez le numéro de votre choix : ")
+        return choix
+
+
+class reports_main_menu_view:
+    def show_menu(self):
+        """
+        Affiche le menu des rapports
+        """
+        print("\nMenu des Rapports")
+        print("1. Liste de tous les joueurs par ordre alphabétique")
+        print("2. Liste de tous les tournois")
+        print("3. Nom et dates d’un tournoi donné")
+        print("4. Liste des joueurs d'un tournoi par ordre alphabétique")
+        print("5. Liste de tous les tours du tournoi et de tous les matchs du tour.")
+        print("6. Retour")
         choix = input("Entrez le numéro de votre choix : ")
         return choix

@@ -1,4 +1,4 @@
-from datetime import datetime
+from model.model_matchs import Round
 
 
 class Tournament:
@@ -9,24 +9,27 @@ class Tournament:
         start_date,
         end_date,
         players=[],
-        rounds=4,
+        rounds=None,
         description="",
         current_round=0,
         matches=[],
+        number_of_rounds=4,
     ):
         self.name = name
         self.location = location
         self.start_date = start_date
         self.end_date = end_date
         self.players = players
-        self.rounds = rounds
+        self.rounds = rounds if rounds is not None else []
         self.current_round = current_round
         self.matches = matches
         self.description = description
+        self.number_of_rounds = number_of_rounds
 
     def add_player(self, player):
         """
         Ajoute un joueur au tournoi
+
         """
         if player not in self.players:
             self.players.append(player)
@@ -38,10 +41,10 @@ class Tournament:
             "start_date": str(self.start_date),
             "end_date": str(self.end_date),
             "players": [player.players_serialize() for player in self.players],
-            "rounds": self.rounds,
             "current_round": self.current_round,
             "matches": self.matches,
             "description": self.description,
+            "rounds": [round.serialize() for round in self.rounds],
         }
 
     def start_new_round(self, name):
@@ -60,7 +63,7 @@ class Tournament:
             return
 
         print("\nClassement actuel des joueurs :")
-        # Trier les joueurs par score décroissant
+        # Trier les joueurs par score
         sorted_players = sorted(self.players, key=lambda p: p["score"], reverse=True)
         for player in sorted_players:
             print(
@@ -74,32 +77,3 @@ class Tournament:
                 print(
                     f"  {match.player1['first_name']} vs {match.player2['first_name']} - Vainqueur : {'Match nul' if match.winner is None else match.winner['first_name']}"
                 )
-
-
-class Round:
-    def __init__(self, name):
-        self.name = name
-        self.start_time = datetime.now()
-        self.end_time = None
-        self.matches = []
-
-    def end_round(self):
-        """
-        Marque la fin du round.
-        """
-        self.end_time = datetime.now()
-
-
-class Match:
-    def __init__(self, player1, player2):
-        self.player1 = player1
-        self.player2 = player2
-        self.winner = None
-        self.loser = None
-
-    def set_winner(self, winner):
-        """
-        Définit le gagnant du match.
-        """
-        self.winner = winner
-        self.loser = self.player1 if winner == self.player2 else self.player2

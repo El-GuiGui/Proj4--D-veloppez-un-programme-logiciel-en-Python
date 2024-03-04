@@ -1,6 +1,7 @@
 from view.view_mainmenu import main_menu_view
 from controller.controller_players import Player_Controller
 from controller.controller_tournaments import Tournament_Controller
+from controller.controller_reports import Reports_Controller
 
 
 class Main_controller:
@@ -11,6 +12,10 @@ class Main_controller:
         self.player_controller = Player_Controller()
         # Création d'une instance de Tournament_Controller
         self.tournament_controller = Tournament_Controller(self.player_controller)
+        # Création d'une instance de Reports_Controller
+        self.reports_controller = Reports_Controller(
+            self.tournament_controller, self.player_controller
+        )
 
     def run(self):
         """
@@ -24,6 +29,8 @@ class Main_controller:
             elif choix == "2":
                 self.tournament_controller.viewchoice()
             elif choix == "3":
+                self.reports_controller.viewchoice()
+            elif choix == "4":
                 print("Fermeture du programme.")
                 break
             else:

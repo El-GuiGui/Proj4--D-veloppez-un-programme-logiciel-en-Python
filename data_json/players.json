@@ -6,7 +6,7 @@
             "last_name": "e",
             "birth_date": "e",
             "rank": null,
-            "score": 0
+            "score": 8
         },
         {
             "chess_id": "a",
@@ -14,7 +14,7 @@
             "last_name": "a",
             "birth_date": "a",
             "rank": null,
-            "score": 0
+            "score": 1
         },
         {
             "chess_id": "w",
@@ -22,7 +22,7 @@
             "last_name": "w",
             "birth_date": "w",
             "rank": null,
-            "score": 0
+            "score": 5
         },
         {
             "chess_id": "z",
@@ -30,13 +30,21 @@
             "last_name": "z",
             "birth_date": "z",
             "rank": null,
-            "score": 0
+            "score": 2
         },
         {
             "chess_id": "23",
             "first_name": "23",
             "last_name": "23",
             "birth_date": "23",
+            "rank": null,
+            "score": 0
+        },
+        {
+            "chess_id": "01/01/1901",
+            "first_name": "Gui",
+            "last_name": "Gui",
+            "birth_date": "01/01/1901",
             "rank": null,
             "score": 0
         }

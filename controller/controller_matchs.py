@@ -14,7 +14,7 @@ class MatchsController:
             round = self.find_round_by_name(tournament, round_name)
             if round:
                 match = Match(player1, player2)
-                round.matches.append(match)
+                round.matchs.append(match)
                 self.tournaments_controller.save_tournaments()
 
     def record_match_result(
@@ -23,11 +23,10 @@ class MatchsController:
         tournament = self.find_tournament_by_name(tournament_name)
         if tournament:
             round = self.find_round_by_name(tournament, round_name)
-            if round and len(round.matches) > match_index:
-                match = round.matches[match_index]
-                match.score1 = score1
-                match.score2 = score2
-                self.save_tournaments()
+            if round and len(round.matchs) > match_index:
+                match = round.matchs[match_index]
+                match.set_scores(score1, score2)
+                self.tournaments_controller.save_tournaments()
 
     def end_round(self, tournament_name, round_name):
         tournament = self.find_tournament_by_name(tournament_name)
@@ -35,4 +34,18 @@ class MatchsController:
             round = self.find_round_by_name(tournament, round_name)
             if round:
                 round.end_round()
-                self.save_tournaments()
+                self.tournaments_controller.save_tournaments()
+
+    def find_tournament_by_name(self, tournament_name):
+        # Recherche un tournoi par nom
+        for tournament in self.tournaments_controller.tournaments:
+            if tournament.name == tournament_name:
+                return tournament
+        return None
+
+    def find_round_by_name(self, tournament, round_name):
+        # Recherche un round par nom dans un tournoi spécifié
+        for round in tournament.rounds:
+            if round.name == round_name:
+                return round
+        return None

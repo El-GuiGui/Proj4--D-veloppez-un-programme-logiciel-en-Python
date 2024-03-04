@@ -12,7 +12,7 @@
                     "last_name": "e",
                     "birth_date": "e",
                     "rank": null,
-                    "score": 0
+                    "score": 8
                 },
                 {
                     "chess_id": "a",
@@ -20,7 +20,7 @@
                     "last_name": "a",
                     "birth_date": "a",
                     "rank": null,
-                    "score": 0
+                    "score": 1
                 },
                 {
                     "chess_id": "w",
@@ -28,7 +28,7 @@
                     "last_name": "w",
                     "birth_date": "w",
                     "rank": null,
-                    "score": 0
+                    "score": 5
                 },
                 {
                     "chess_id": "z",
@@ -36,15 +36,43 @@
                     "last_name": "z",
                     "birth_date": "z",
                     "rank": null,
+                    "score": 2
+                },
+                {
+                    "chess_id": "23",
+                    "first_name": "23",
+                    "last_name": "23",
+                    "birth_date": "23",
+                    "rank": null,
                     "score": 0
                 },
+                {
+                    "chess_id": "01/01/1901",
+                    "first_name": "Gui",
+                    "last_name": "Gui",
+                    "birth_date": "01/01/1901",
+                    "rank": null,
+                    "score": 0
+                }
+            ],
+            "current_round": 0,
+            "matches": [],
+            "description": "1",
+            "rounds": []
+        },
+        {
+            "name": "2",
+            "location": "2",
+            "start_date": "11/11/1111",
+            "end_date": "11/11/1111",
+            "players": [
                 {
                     "chess_id": "e",
                     "first_name": "e",
                     "last_name": "e",
                     "birth_date": "e",
                     "rank": null,
-                    "score": 0
+                    "score": 11.0
                 },
                 {
                     "chess_id": "a",
@@ -52,7 +80,7 @@
                     "last_name": "a",
                     "birth_date": "a",
                     "rank": null,
-                    "score": 0
+                    "score": 2.0
                 },
                 {
                     "chess_id": "w",
@@ -60,7 +88,7 @@
                     "last_name": "w",
                     "birth_date": "w",
                     "rank": null,
-                    "score": 0
+                    "score": 7.0
                 },
                 {
                     "chess_id": "z",
@@ -68,13 +96,282 @@
                     "last_name": "z",
                     "birth_date": "z",
                     "rank": null,
-                    "score": 0
+                    "score": 4.0
+                },
+                {
+                    "chess_id": "23",
+                    "first_name": "23",
+                    "last_name": "23",
+                    "birth_date": "23",
+                    "rank": null,
+                    "score": 3.0
+                },
+                {
+                    "chess_id": "01/01/1901",
+                    "first_name": "Gui",
+                    "last_name": "Gui",
+                    "birth_date": "01/01/1901",
+                    "rank": null,
+                    "score": 1.0
                 }
             ],
-            "rounds": 4,
-            "current_round": 0,
+            "current_round": 4,
             "matches": [],
-            "description": "1"
+            "description": "2",
+            "rounds": [
+                {
+                    "name": "Round 1",
+                    "start_time": "2024-02-28T23:07:18.824946",
+                    "end_time": "2024-02-28T23:08:24.244281",
+                    "matches": []
+                },
+                {
+                    "name": "Round 2",
+                    "start_time": "2024-02-28T23:09:50.534229",
+                    "end_time": "2024-02-28T23:10:28.745372",
+                    "matches": []
+                },
+                {
+                    "name": "Round 3",
+                    "start_time": "2024-02-28T23:10:32.498665",
+                    "end_time": "2024-02-28T23:35:05.640660",
+                    "matches": []
+                },
+                {
+                    "name": "Round 4",
+                    "start_time": "2024-02-28T23:35:10.535689",
+                    "end_time": "2024-02-28T23:35:16.878672",
+                    "matches": []
+                }
+            ]
+        },
+        {
+            "name": "11111",
+            "location": "111111",
+            "start_date": "11/11/1111",
+            "end_date": "11/11/1111",
+            "players": [
+                {
+                    "chess_id": "e",
+                    "first_name": "e",
+                    "last_name": "e",
+                    "birth_date": "e",
+                    "rank": null,
+                    "score": 9.0
+                },
+                {
+                    "chess_id": "a",
+                    "first_name": "a",
+                    "last_name": "a",
+                    "birth_date": "a",
+                    "rank": null,
+                    "score": 2.0
+                },
+                {
+                    "chess_id": "w",
+                    "first_name": "w",
+                    "last_name": "w",
+                    "birth_date": "w",
+                    "rank": null,
+                    "score": 6.0
+                },
+                {
+                    "chess_id": "z",
+                    "first_name": "z",
+                    "last_name": "z",
+                    "birth_date": "z",
+                    "rank": null,
+                    "score": 3.0
+                },
+                {
+                    "chess_id": "23",
+                    "first_name": "23",
+                    "last_name": "23",
+                    "birth_date": "23",
+                    "rank": null,
+                    "score": 1.0
+                },
+                {
+                    "chess_id": "01/01/1901",
+                    "first_name": "Gui",
+                    "last_name": "Gui",
+                    "birth_date": "01/01/1901",
+                    "rank": null,
+                    "score": 1.0
+                }
+            ],
+            "current_round": 1,
+            "matches": [],
+            "description": "1111111",
+            "rounds": [
+                {
+                    "name": "Round 1",
+                    "start_time": "2024-02-28T23:36:32.289777",
+                    "end_time": "2024-02-28T23:37:00.607734",
+                    "matches": []
+                }
+            ]
+        },
+        {
+            "name": "tournois 1",
+            "location": "fr",
+            "start_date": "01/01/1901",
+            "end_date": "01/01/1901",
+            "players": [
+                {
+                    "chess_id": "e",
+                    "first_name": "e",
+                    "last_name": "e",
+                    "birth_date": "e",
+                    "rank": null,
+                    "score": 12.0
+                },
+                {
+                    "chess_id": "a",
+                    "first_name": "a",
+                    "last_name": "a",
+                    "birth_date": "a",
+                    "rank": null,
+                    "score": 2.0
+                },
+                {
+                    "chess_id": "w",
+                    "first_name": "w",
+                    "last_name": "w",
+                    "birth_date": "w",
+                    "rank": null,
+                    "score": 5.0
+                },
+                {
+                    "chess_id": "z",
+                    "first_name": "z",
+                    "last_name": "z",
+                    "birth_date": "z",
+                    "rank": null,
+                    "score": 6.0
+                },
+                {
+                    "chess_id": "23",
+                    "first_name": "23",
+                    "last_name": "23",
+                    "birth_date": "23",
+                    "rank": null,
+                    "score": 0.0
+                },
+                {
+                    "chess_id": "01/01/1901",
+                    "first_name": "Gui",
+                    "last_name": "Gui",
+                    "birth_date": "01/01/1901",
+                    "rank": null,
+                    "score": 3.0
+                }
+            ],
+            "current_round": 4,
+            "matches": [],
+            "description": "tournois1 test",
+            "rounds": [
+                {
+                    "name": "Round 1",
+                    "start_time": "2024-02-29T10:17:21.803047",
+                    "end_time": "2024-02-29T10:18:20.541407",
+                    "matches": [
+                        {
+                            "player1": "z",
+                            "player2": "23",
+                            "score1": 1.0,
+                            "score2": 0.0
+                        },
+                        {
+                            "player1": "e",
+                            "player2": "01/01/1901",
+                            "score1": 1.0,
+                            "score2": 0.0
+                        },
+                        {
+                            "player1": "a",
+                            "player2": "w",
+                            "score1": 1.0,
+                            "score2": 0.0
+                        }
+                    ]
+                },
+                {
+                    "name": "Round 2",
+                    "start_time": "2024-02-29T10:19:00.776076",
+                    "end_time": "2024-02-29T10:19:14.671052",
+                    "matches": [
+                        {
+                            "player1": "e",
+                            "player2": "w",
+                            "score1": 1.0,
+                            "score2": 0.0
+                        },
+                        {
+                            "player1": "z",
+                            "player2": "a",
+                            "score1": 1.0,
+                            "score2": 0.0
+                        },
+                        {
+                            "player1": "23",
+                            "player2": "01/01/1901",
+                            "score1": 0.0,
+                            "score2": 1.0
+                        }
+                    ]
+                },
+                {
+                    "name": "Round 3",
+                    "start_time": "2024-02-29T10:19:19.432963",
+                    "end_time": "2024-02-29T10:19:29.924885",
+                    "matches": [
+                        {
+                            "player1": "e",
+                            "player2": "w",
+                            "score1": 1.0,
+                            "score2": 0.0
+                        },
+                        {
+                            "player1": "z",
+                            "player2": "a",
+                            "score1": 1.0,
+                            "score2": 0.0
+                        },
+                        {
+                            "player1": "01/01/1901",
+                            "player2": "23",
+                            "score1": 1.0,
+                            "score2": 0.0
+                        }
+                    ]
+                },
+                {
+                    "name": "Round 4",
+                    "start_time": "2024-02-29T10:19:35.704270",
+                    "end_time": "2024-02-29T10:19:53.049464",
+                    "matches": [
+                        {
+                            "player1": "e",
+                            "player2": "w",
+                            "score1": 1.0,
+                            "score2": 0.0
+                        },
+                        {
+                            "player1": "z",
+                            "player2": "a",
+                            "score1": 1.0,
+                            "score2": 0.0
+                        },
+                        {
+                            "player1": "01/01/1901",
+                            "player2": "23",
+                            "score1": 1.0,
+                            "score2": 0.0
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

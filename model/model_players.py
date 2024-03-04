@@ -33,7 +33,7 @@ def update_score(self, points):
 
 
 def compare_score(self, other_player):
-    # Compare le score entre ce joueur et un autre, Renvoie True si ce joueur a un score plus élevé à l'autre, sinon False.
+    # Compare le score entre ce joueur et un autre
     return self.score > other_player.score
 
 
