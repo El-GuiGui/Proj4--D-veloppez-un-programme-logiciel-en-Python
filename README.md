@@ -56,3 +56,38 @@ Après l'installation des bibliothèques, lancez le script avec :
 ```
 
 Vous pouvez maintenant naviguer dans tous les menus et sous menus de l'application !
+
+
+## Générer un rapport avec flake8
+
+Il faut changer l'option de longueur de ligne maximale et la fixée à 119 et exclure les répertoires/fichiers également non voulu.
+
+Donc après avoir installer les dépendances requises :
+
+Appliquer tout cela à l'aide de la commande :
+
+   ```bash
+   flake8 --format=html --htmldir=flake8-report --max-line-length 119 --exclude=.git,env,__pycache__,.gitignore
+```
+
+Assurez-vous de bien être dans le dossier du projet !
+
+
+## Autre solution pour flake8
+
+Dans le dossier du projet, créé un fichier nommé :
+
+   ```bash
+   setup.cfg
+```
+
+Puis dans ce fichier, copier les attributs voulu, vous pouvez modifier "exclude" au besoin :
+
+
+   ```bash
+[flake8]
+format = html
+htmldir = flake8-report
+max-line-length = 119
+exclude = .git,env,__pycache__,.gitignore
+```
