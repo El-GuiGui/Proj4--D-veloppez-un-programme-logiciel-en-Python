@@ -64,9 +64,6 @@ class Reports_Controller:
                     )
                     self.export_tournament_rounds_and_matches(f"{filename}.txt")
             elif choix == "6":
-                tournament_name = input(
-                    "Entrez le nom du tournoi pour afficher ses détails : "
-                )
                 print("Retour au menu principal.")
                 break
             else:
