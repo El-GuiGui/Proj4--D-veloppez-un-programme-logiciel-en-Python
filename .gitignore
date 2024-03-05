@@ -1,6 +1,7 @@
 # Ignore directories
 __pycache__/
 autres/
+env/
 
 # Ignore all .py files
 *.py
