@@ -4,12 +4,13 @@ Ce projet a pour but de développer une application hors ligne de gestion de tou
 
 ## Configuration de l'Environnement
 
-Pour exécuter le programme, suivez les étapes ci-dessous pour configurer l'environnement.
+Pour exécuter le script, suivez les étapes ci-dessous pour configurer l'environnement.
 
 ### Prérequis
 
 - Un éditeur : VisualStudio code, Spider, pycharm ...
-- Python 3.x<
+- Python 3.x
+- pip (LE gestionnaire de paquets pour Python)
 
 ### Création et Activation de l'Environnement Virtuel
 
@@ -37,9 +38,18 @@ Utilisez la commande appropriée selon votre système d'exploitation.
 ```
 
 
-3. **Lancement du Script** :
+3. **Installation des Dépendances** :
 
-lancez le script avec :
+Avec l'environnement virtuel activé, installez les dépendances requises :
+
+   ```bash
+   pip install -r requirements.txt
+```
+Assurez-vous que le fichier requirements.txt est présent dans le dossier du projet !
+
+4. **Lancement du Script** :
+
+Après l'installation des bibliothèques, lancez le script avec :
 
    ```bash
    python main.py
