@@ -143,7 +143,7 @@ class Tournament_Controller:
         else:
             for tournament in self.tournaments:
                 print(
-                    f"Nom : {tournament.name}, Lieu : {tournament.location}, Dates : {tournament.start_date} à {tournament.end_date}"
+                    f"Nom : {tournament.name}, Lieu : {tournament.location}, Dates : {tournament.start_date} à {tournament.end_date}, Description: {tournament.description}"
                 )
 
     def resume_tournaments(self):
@@ -321,3 +321,8 @@ class Tournament_Controller:
                 f"Paire: {sorted_players[i].first_name} {sorted_players[i].last_name} (Score: {sorted_players[i].score}) "
                 f"vs {sorted_players[i+1].first_name} {sorted_players[i+1].last_name} (Score: {sorted_players[i+1].score})"
             )
+
+
+@property
+def get_matches_controller(self):
+    return self.matches_controller

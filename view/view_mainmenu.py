@@ -24,10 +24,9 @@ class player_main_menu_view:
         print("2. Mettre à jour un joueur existant")
         print("3. Supprimer un joueur")
         print("4. Afficher tous les joueurs")
-        print("5. Afficher les joueurs par score")
-        print("6. Afficher les joueurs par ordre alphabétique")
-        print("7. Retourner au menu principal")
-        print("8. Quitter")
+        print("5. Afficher les joueurs par ordre alphabétique")
+        print("6. Retourner au menu principal")
+        print("7. Quitter")
 
         choix = input("Entrez le numéro de votre choix : ")
         return choix

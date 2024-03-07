@@ -9,7 +9,6 @@ class Player_View:
         last_name = input("Nom de famille : ")
         birth_date = input("Date de naissance (JJ/MM/AAAA) : ")
         chess_id = input("Identifiant d'échecs : ")
-        rank = None
         score = 0
 
         return {
@@ -17,7 +16,6 @@ class Player_View:
             "last_name": last_name,
             "birth_date": birth_date,
             "chess_id": chess_id,
-            "rank": rank,
             "score": score,
         }
 
@@ -54,27 +52,15 @@ class Player_View:
         print(f"Nom : {player.last_name}, Prénom : {player.first_name}")
         print(f"Date de naissance : {player.birth_date}")
         print(f"Identifiant d'échecs : {player.chess_id}")
-        print(
-            f"Classement : {player.rank if player.rank is not None else 'Non classé'}"
-        )
-        print(f"Score : {player.score}")
         print("--------------------------------------------------------")
 
-    def show_players_list(self, players):  # view -> controller player show
+    def show_players_list(self, players):
         """
         Affiche une liste de tous les joueurs.
 
         """
         for player in players:
             self.show_player_details(player)
-
-    def show_players_by_score(self, players):
-        """
-        Affiche les joueurs triés par score.
-
-        """
-        sorted_players = sorted(players, key=lambda x: x.score, reverse=True)
-        self.show_players_list(sorted_players)
 
     def show_players_alphabetically(self, players):
         """

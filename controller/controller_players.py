@@ -17,9 +17,12 @@ class Player_Controller:
 
         """
         if not os.path.exists(file_path):
+            with open(file_path, "w", encoding="utf-8") as file:
+                json.dump({"players": []}, file)
             return []
         with open(file_path, "r") as file:
             data = json.load(file)
+            print(data)
             return [players(**player_dict) for player_dict in data.get("players", [])]
 
     def save_players(self, file_path="data_json/players.json"):
@@ -51,13 +54,11 @@ class Player_Controller:
             elif choix == "4":
                 self.show_all_players()
             elif choix == "5":
-                self.show_players_by_score()
-            elif choix == "6":
                 self.show_players_alphabetically()
-            elif choix == "7":
+            elif choix == "6":
                 print("Retour au menu principal.")
                 break
-            elif choix == "8":
+            elif choix == "7":
                 print("Fermeture du programme.")
                 exit()
             else:
@@ -80,7 +81,6 @@ class Player_Controller:
                 player.last_name = updated_info.get("last_name", player.last_name)
                 player.birth_date = updated_info.get("birth_date", player.birth_date)
                 player.chess_id = updated_info.get("chess_id", player.chess_id)
-                player.rank = updated_info.get("rank", player.rank)
                 player.score = updated_info.get("score", player.score)
                 self.save_players()
                 print(
@@ -109,12 +109,6 @@ class Player_Controller:
             print("Il n'y a pas de joueurs à afficher.")
         else:
             self.view.show_players_list(self.players)
-
-    def show_players_by_score(self):
-        if not self.players:
-            print("Il n'y a pas de joueurs à afficher.")
-        else:
-            self.view.show_players_by_score(self.players)
 
     def show_players_alphabetically(self):
         if not self.players:

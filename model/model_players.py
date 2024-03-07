@@ -1,11 +1,10 @@
 class players:
-    def __init__(self, first_name, last_name, birth_date, chess_id, rank=None, score=0):
+    def __init__(self, first_name, last_name, birth_date, chess_id, score=0):
         # Identifiant national d'échecs
         self.chess_id = chess_id
         self.first_name = first_name
         self.last_name = last_name
         self.birth_date = birth_date
-        self.rank = rank
         self.score = score
 
     def players_serialize(self):
@@ -18,7 +17,6 @@ class players:
             "first_name": self.first_name,
             "last_name": self.last_name,
             "birth_date": self.birth_date,
-            "rank": self.rank,
             "score": self.score,
         }
 
@@ -39,4 +37,4 @@ def compare_score(self, other_player):
 
 def __str__(self):
     # Retourne les informations du joueur.
-    return f"{self.first_name} {self.last_name} {self.birth_date} (ID: {self.chess_id}), Score: {self.score}, Rank: {self.rank}"
+    return f"{self.first_name} {self.last_name} {self.birth_date} (ID: {self.chess_id}), Score: {self.score}"
