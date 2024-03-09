@@ -91,3 +91,9 @@ htmldir = flake8-report
 max-line-length = 119
 exclude = .git,env,__pycache__,.gitignore
 ```
+
+
+Ensuite dans le terminal, générer le rapport avec :
+   ```bash
+flake8 --format=html --htmldir=flake8-report
+```
