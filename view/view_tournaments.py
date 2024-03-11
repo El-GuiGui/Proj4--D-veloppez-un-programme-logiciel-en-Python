@@ -1,6 +1,9 @@
 class tournaments_view:
     def get_tournament_details(self):
-        """Demande et retourne les détails pour la création d'un nouveau tournoi."""
+        """
+        Demande et retourne les détails pour la création d'un nouveau tournoi.
+
+        """
         print("\n--- Création d'un nouveau tournoi ---")
         name = input("Nom du tournoi : ")
         location = input("Lieu : ")
@@ -17,7 +20,10 @@ class tournaments_view:
         }
 
     def show_tournament_details(self, tournament):
-        """Affiche les détails d'un tournoi spécifique."""
+        """
+        Affiche les détails d'un tournoi spécifique.
+
+        """
         print(f"\n--- Détails du Tournoi : {tournament.name} ---")
         print(f"Lieu : {tournament.location}")
         print(f"Date de début : {tournament.start_date}")

@@ -1,7 +1,9 @@
+# Importation des modules nécessaires
 from model.model_matchs import Round
 
 
 class Tournament:
+    # Initialisation du tournoi
     def __init__(
         self,
         name,
@@ -26,14 +28,12 @@ class Tournament:
         self.description = description
         self.number_of_rounds = number_of_rounds
 
+    # Ajoute un joueur à la liste des joueurs s'il n'y est pas déjà.
     def add_player(self, player):
-        """
-        Ajoute un joueur au tournoi
-
-        """
         if player not in self.players:
             self.players.append(player)
 
+    # Prépare les données du tournoi pour la sérialisation
     def tournament_serialize(self):
         return {
             "name": self.name,
@@ -42,11 +42,11 @@ class Tournament:
             "end_date": str(self.end_date),
             "players": [player.players_serialize() for player in self.players],
             "current_round": self.current_round,
-            "matches": self.matches,
             "description": self.description,
             "rounds": [round.serialize() for round in self.rounds],
         }
 
+    # Commence un nouveau round si le nombre maximum de rounds n'a pas été atteint.
     def start_new_round(self, name):
         if self.current_round < self.rounds:
             new_round = Round(name)
@@ -56,24 +56,23 @@ class Tournament:
         else:
             raise ValueError("Nombre maximum de rounds atteint.")
 
+    # Affiche les résultats actuels du tournoi.
     def show_results(self):
-        # Vérifie si aucun round n'a été commencé
         if self.current_round == 0:
             print("Aucun round n'a été commencé. Veuillez commencer un round.")
             return
 
         print("\nClassement actuel des joueurs :")
-        # Trier les joueurs par score
-        sorted_players = sorted(self.players, key=lambda p: p["score"], reverse=True)
+        # Trie les joueurs par score
+        sorted_players = sorted(self.players, key=lambda p: p.score, reverse=True)
         for player in sorted_players:
-            print(
-                f"{player['first_name']} {player['last_name']} : {player['score']} points"
-            )
+            print(f"{player.first_name} {player.last_name} : {player.score} points")
 
         print("\nMatchs joués :")
         for round in self.rounds:
             print(f"{round.name}:")
-            for match in round.matches:
+            for match in round.matchs:
                 print(
-                    f"  {match.player1['first_name']} vs {match.player2['first_name']} - Vainqueur : {'Match nul' if match.winner is None else match.winner['first_name']}"
+                    f"  {match.player1.first_name} {match.player1.last_name}"
+                    f" vs {match.player2.first_name} {match.player2.last_name}"
                 )

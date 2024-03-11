@@ -1,17 +1,14 @@
 class players:
+    # Initialisation des attributs du joueur
     def __init__(self, first_name, last_name, birth_date, chess_id, score=0):
-        # Identifiant national d'échecs
         self.chess_id = chess_id
         self.first_name = first_name
         self.last_name = last_name
         self.birth_date = birth_date
         self.score = score
 
+    # Convertit l'instance du joueur en un dictionnaire pour la sérialisation,
     def players_serialize(self):
-        """
-        Convertit pour la sérialisation du JSON.
-
-        """
         return {
             "chess_id": self.chess_id,
             "first_name": self.first_name,
@@ -21,20 +18,21 @@ class players:
         }
 
     @classmethod
+    # Crée une instance de la classe à partir du dictionnaire.
     def players_deserialize(cls, data):
         return cls(**data)
 
 
+# Met à jour le score suivant les points gagnés
 def update_score(self, points):
-    # Met à jour le score suivant les points gagnés
     self.score += points
 
 
+# Compare le score entre deux joueurs
 def compare_score(self, other_player):
-    # Compare le score entre ce joueur et un autre
     return self.score > other_player.score
 
 
+# Retourne les informations du joueur.
 def __str__(self):
-    # Retourne les informations du joueur.
     return f"{self.first_name} {self.last_name} {self.birth_date} (ID: {self.chess_id}), Score: {self.score}"

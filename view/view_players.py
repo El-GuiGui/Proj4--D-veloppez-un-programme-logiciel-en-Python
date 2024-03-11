@@ -24,23 +24,11 @@ class Player_View:
         Met à jour les détails d'un joueur existant
 
         """
-        print(
-            f"Mise à jour des informations pour {player.first_name} {player.last_name}:"
-        )
-        player.first_name = (
-            input(f"Nouveau prénom ({player.first_name}): ") or player.first_name
-        )
-        player.last_name = (
-            input(f"Nouveau nom de famille ({player.last_name}): ") or player.last_name
-        )
-        player.birth_date = (
-            input(f"Nouvelle date de naissance ({player.birth_date}): ")
-            or player.birth_date
-        )
-        player.chess_id = (
-            input(f"Nouvel identifiant d'échecs ({player.chess_id}): ")
-            or player.chess_id
-        )
+        print(f"Mise à jour des informations pour {player.first_name} {player.last_name}:")
+        player.first_name = input(f"Nouveau prénom ({player.first_name}): ") or player.first_name
+        player.last_name = input(f"Nouveau nom de famille ({player.last_name}): ") or player.last_name
+        player.birth_date = input(f"Nouvelle date de naissance ({player.birth_date}): ") or player.birth_date
+        player.chess_id = input(f"Nouvel identifiant d'échecs ({player.chess_id}): ") or player.chess_id
         return player
 
     def show_player_details(self, player):
