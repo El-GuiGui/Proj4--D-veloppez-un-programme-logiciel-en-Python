@@ -12,41 +12,48 @@
             "first_name": "1",
             "last_name": "1",
             "birth_date": "1",
-            "score": 0
+            "score": 10.0
         },
         {
             "chess_id": "2",
             "first_name": "2",
             "last_name": "2",
             "birth_date": "2/22/2222",
-            "score": 0
+            "score": 11.0
         },
         {
             "chess_id": "3",
             "first_name": "3",
             "last_name": "3",
             "birth_date": "33/33/3333",
-            "score": 0
+            "score": 1.0
         },
         {
             "chess_id": "4",
             "first_name": "4",
             "last_name": "4",
             "birth_date": "4",
-            "score": 0
+            "score": 8.0
         },
         {
             "chess_id": "5",
             "first_name": "5",
             "last_name": "5",
             "birth_date": "5",
-            "score": 0
+            "score": 18.0
         },
         {
             "chess_id": "6",
             "first_name": "6",
             "last_name": "6",
             "birth_date": "6",
+            "score": 9.0
+        },
+        {
+            "chess_id": "az12345",
+            "first_name": "1234",
+            "last_name": "1234",
+            "birth_date": "11/11/111",
             "score": 0
         }
     ]

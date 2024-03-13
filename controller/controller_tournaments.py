@@ -133,6 +133,8 @@ class Tournament_Controller:
         details = self.details_view.get_tournament_details()
         new_tournament = Tournament(**details)
         self.tournaments.append(new_tournament)
+        for player in self.player_controller.get_players():
+            player.score = 0
         self.save_tournaments()
         print("Tournoi créé avec succès. Passons a la gestion de ce tournois.")
         self.manage_tournament(new_tournament)
@@ -214,7 +216,6 @@ class Tournament_Controller:
         if tournament.current_round >= tournament.number_of_rounds:
             print("Le nombre maximal de rounds pour ce tournoi a été atteint.")
             return
-
         print(f"Rounds actuels: {len(tournament.rounds)}")
 
         if tournament.current_round > 0 and len(tournament.rounds) > 0:
@@ -228,17 +229,37 @@ class Tournament_Controller:
             print("Il semble y avoir une erreur avec les rounds du tournoi.")
             return
 
-        if tournament.current_round == 0:
-            # Premier round, mélanger les joueurs aléatoirement
+        if tournament.current_round == 0:  # Premier round, mélanger les joueurs aléatoirement
             shuffled_players = random.sample(tournament.players, len(tournament.players))
             pairs = list(zip(shuffled_players[::2], shuffled_players[1::2]))
-        else:
-            # Rounds suivants, appairer les joueurs par score
-            sorted_players = sorted(tournament.players, key=lambda x: x.score, reverse=True)
+        else:  # Puis mélange selon le score et éviter les rencontres répétitives.
             pairs = []
-            for i in range(0, len(sorted_players), 2):
-                # Ne pas appairer des joueurs déjà rencontrés si nécessaire
-                pairs.append((sorted_players[i], sorted_players[i + 1]))
+            already_played_pairs = set()
+            for r in tournament.rounds:
+                for match in r.matchs:
+                    already_played_pairs.add(frozenset((match.player1.chess_id, match.player2.chess_id)))
+            sorted_players = sorted(tournament.players, key=lambda player: player.score, reverse=True)
+            used_players = set()
+            for player1 in sorted_players:
+                if player1.chess_id not in used_players:
+                    for player2 in [
+                        p for p in sorted_players if p.chess_id not in used_players and p.chess_id != player1.chess_id
+                    ]:
+                        potential_pair = frozenset((player1.chess_id, player2.chess_id))
+                        if potential_pair not in already_played_pairs:
+                            pairs.append((player1, player2))
+                            already_played_pairs.add(potential_pair)
+                            used_players.update([player1.chess_id, player2.chess_id])
+                            break
+                    else:  # Forme une paire même si des joueurs se sont déjà rencontrés.
+                        for player2 in [
+                            p
+                            for p in sorted_players
+                            if p.chess_id not in used_players and p.chess_id != player1.chess_id
+                        ]:
+                            pairs.append((player1, player2))
+                            used_players.update([player1.chess_id, player2.chess_id])
+                            break
 
         if len(tournament.players) % 2 != 0:
             print("Le nombre de joueurs est impair, impossible de générer des paires de matchs.")
